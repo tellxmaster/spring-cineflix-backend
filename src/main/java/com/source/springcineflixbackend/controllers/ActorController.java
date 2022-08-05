@@ -32,8 +32,10 @@ public class ActorController {
         return this.actorService.list(30);
     }
 
-    @PostMapping()
-    public Actor saveActor(@RequestBody Actor actor){
+    @PostMapping("sexo/{sexId}")
+    public Actor saveActor(@RequestBody Actor actor,@PathVariable Long sexId){
+        Sexo sexo = sexoService.get(sexId);
+        actor.asignarSexo(sexo);
         return this.actorService.create(actor);
     }
 
