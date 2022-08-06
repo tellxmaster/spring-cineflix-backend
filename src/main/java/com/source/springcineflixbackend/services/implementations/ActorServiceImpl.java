@@ -35,7 +35,9 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public Actor get(Long id) {
         log.info("Obteniendo datos del Actor Pelicula con ID: {}", id);
-        return actorRepo.findById(id).get();
+        Actor actor = actorRepo.findById(id).get();
+        System.out.println(actor.getSexo().getSex_nombre());
+        return actor;
     }
 
     @Override

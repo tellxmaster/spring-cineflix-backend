@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "actor")
@@ -30,8 +31,11 @@ public class Actor {
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sex_id")
+    @JoinColumn(name = "sex_id",foreignKey=@ForeignKey(name = "FN_ACTOR_SEXO_PELICULA"))
     private Sexo sexo;
+
+    @OneToMany(mappedBy = "actor")
+    private List<ActorPelicula> actores_pelicula;
 
     public Long getId() {
         return id;

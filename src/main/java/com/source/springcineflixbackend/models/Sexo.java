@@ -70,9 +70,4 @@ public class Sexo {
         this.actors = actors;
     }
 
-    public void addActors(Actor actor){
-        if(actors==null) actors = new ArrayList<Actor>();
-        actors.add(actor);
-        actor.setSexo(this);
-    }
 }

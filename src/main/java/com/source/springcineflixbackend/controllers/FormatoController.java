@@ -1,13 +1,13 @@
 package com.source.springcineflixbackend.controllers;
 
+import com.source.springcineflixbackend.models.Formato;
 import com.source.springcineflixbackend.models.Response;
-import com.source.springcineflixbackend.models.Sexo;
-import com.source.springcineflixbackend.services.implementations.SexoServiceImpl;
+import com.source.springcineflixbackend.services.implementations.FormatoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import javax.validation.Valid;
 
 import static java.time.LocalDateTime.now;
 import static java.util.Map.of;
@@ -15,18 +15,19 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/sexo")
-public class SexoController {
+@RequestMapping("/formato")
+public class FormatoController {
+
     @Autowired
-    SexoServiceImpl sexoService;
-    
+    FormatoServiceImpl formatoService;
+
     @GetMapping("/list")
-    public ResponseEntity<Response> getSexos(){
+    public ResponseEntity<Response> getFormatos(){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("sexos",sexoService.list(30)))
-                        .message("Sexos Obtenidos")
+                        .data(of("formatos",formatoService.list(30)))
+                        .message("Formatos obtenidos")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -34,12 +35,12 @@ public class SexoController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Response> saveSexo(@RequestBody Sexo sexo){
+    public ResponseEntity<Response> saveFormato(@RequestBody @Valid Formato formato){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("sexos",sexoService.create(sexo)))
-                        .message("Sexo creado")
+                        .data(of("formatos",formatoService.create(formato)))
+                        .message("Formato creado")
                         .status(CREATED)
                         .statusCode(CREATED.value())
                         .build()
@@ -47,25 +48,12 @@ public class SexoController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Response> getSexo(@PathVariable("id") Long id){
+    public ResponseEntity<Response> getFormato(@PathVariable("id") Long id){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("sexos",sexoService.get(id)))
-                        .message("Sexo obtenido")
-                        .status(OK)
-                        .statusCode(OK.value())
-                        .build()
-        );
-    }
-
-    @PutMapping("/update")
-    public ResponseEntity<Response> updateSexo(@RequestBody Sexo sexo){
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(of("sexos",sexoService.update(sexo)))
-                        .message("Sexo Actualizado")
+                        .data(of("formatos",formatoService.get(id)))
+                        .message("Formato obtenido")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -73,12 +61,12 @@ public class SexoController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Response> deleteSexo(@PathVariable("id") Long id){
+    public ResponseEntity<Response> deleteFormato(@PathVariable("id") Long id){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("sexos",sexoService.delete(id)))
-                        .message("Sexo eliminado")
+                        .data(of("formatos",formatoService.delete(id)))
+                        .message("Formato eliminado")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
