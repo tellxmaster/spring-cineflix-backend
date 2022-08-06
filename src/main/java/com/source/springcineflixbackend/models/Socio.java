@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "socio")
@@ -39,8 +40,8 @@ public class Socio {
     private List<Alquiler> alquilers;
 
     @Column(name="updated_at")
-    private LocalDateTime updated_at;
+    private Date updated_at;
 
     @Column(name="created_at")
-    private LocalDateTime created_at;
+    private Date created_at;
 }

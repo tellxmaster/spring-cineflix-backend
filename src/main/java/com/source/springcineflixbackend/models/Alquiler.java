@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity(name = "alquiler")
 @Data
@@ -29,20 +30,27 @@ public class Alquiler {
     private Pelicula peliculaAlq;
 
     @Column(name = "alq_fecha_desde")
-    private int alq_fecha_desde;
+    private Date alq_fecha_desde;
 
     @Column(name = "alq_fecha_hasta")
-    private int alq_fecha_hasta;
+    private Date alq_fecha_hasta;
 
     @Column(name = "alq_valor")
-    private int alq_valor;
+    private double alq_valor;
 
     @Column(name = "alq_fecha_entrega")
-    private int alq_fecha_entrega;
+    private Date alq_fecha_entrega;
 
     @Column(name="updated_at")
-    private LocalDateTime updated_at;
+    private Date updated_at;
 
     @Column(name="created_at")
-    private LocalDateTime created_at;
+    private Date created_at;
+
+    public void asignarSocio(Socio socio) {
+        this.socio = socio;
+    }
+    public void asignarPelicula(Pelicula pelicula) {
+        this.peliculaAlq = pelicula;
+    }
 }
