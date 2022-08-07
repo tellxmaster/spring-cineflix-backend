@@ -3,6 +3,7 @@ package com.source.springcineflixbackend.security.jwt;
 
 import com.source.springcineflixbackend.security.entity.UsuarioPrincipal;
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,9 +14,9 @@ import javax.validation.Valid;
 import java.util.Date;
 
 @Component
+@Slf4j
 public class JwtProvider {
     //Genera el token
-    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     @Value("${jwt.secret}")
     private String secret;
@@ -26,7 +27,7 @@ public class JwtProvider {
     public String generateToken(Authentication authentication){
         UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
         return Jwts.builder()
-                .setSubject(usuarioPrincipal.getEmail())
+                .setSubject(usuarioPrincipal.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000))
                 .signWith(SignatureAlgorithm.HS512, secret)
@@ -42,15 +43,15 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
         }catch (MalformedJwtException e){
-            logger.error("Token mal generado");
+            log.error("Token mal generado");
         }catch (UnsupportedJwtException e){
-            logger.error("Token no soportado");
+            log.error("Token no soportado");
         }catch (ExpiredJwtException e){
-            logger.error("Token expirado");
+            log.error("Token expirado");
         }catch (IllegalArgumentException e){
-            logger.error("Token vacio");
+            log.error("Token vacio");
         }catch (SignatureException e){
-            logger.error("Error con la Firma");
+            log.error("Error con la Firma");
         }
         return false;
     }

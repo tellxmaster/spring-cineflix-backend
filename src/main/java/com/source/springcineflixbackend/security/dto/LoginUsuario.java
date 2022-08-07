@@ -1,20 +1,19 @@
 package com.source.springcineflixbackend.security.dto;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 public class LoginUsuario {
-    @Email
-    private String email;
+    @NotBlank
+    private String nombreUsuario;
     @NotBlank
     private String password;
 
-    public String getEmail() {
-        return email;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {

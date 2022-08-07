@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Rol {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @NotNull
     @Enumerated(EnumType.STRING)
     private RolNombre rolNombre;
@@ -21,11 +21,11 @@ public class Rol {
         this.rolNombre = rolNombre;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

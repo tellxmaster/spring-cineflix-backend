@@ -1,6 +1,7 @@
 package com.source.springcineflixbackend.security.jwt;
 
 import com.source.springcineflixbackend.security.service.UserDetailsServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+@Slf4j
 public class JwtTokenFilter extends OncePerRequestFilter {
     //Valida el token y se ejecuta en cada ejecución y permite el acceso
 
-    private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
     @Autowired
     JwtProvider jwtProvider;
 
@@ -30,14 +32,14 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         try{
             String token = getToken(req);
             if(token != null && jwtProvider.validateToken(token)){
-                String emailUsuario = jwtProvider.getUserNameFromToken(token);
-                UserDetails userDetails = userDetailsService.loadUserByUsername(emailUsuario);
+                String nombreUsuario = jwtProvider.getUserNameFromToken(token);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(nombreUsuario);
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
             filterChain.doFilter(req,res);
         }catch (Exception e){
-            logger.error("Error en doFilter"+e);
+            log.error("Error en doFilter"+e);
         }
     }
 
