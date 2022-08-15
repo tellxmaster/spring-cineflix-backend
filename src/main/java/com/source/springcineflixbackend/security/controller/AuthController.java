@@ -1,5 +1,7 @@
 package com.source.springcineflixbackend.security.controller;
 
+import com.source.springcineflixbackend.models.RenewResponse;
+import com.source.springcineflixbackend.models.Response;
 import com.source.springcineflixbackend.security.dto.JwtDto;
 import com.source.springcineflixbackend.security.dto.LoginUsuario;
 import com.source.springcineflixbackend.security.dto.Mensaje;
@@ -11,6 +13,7 @@ import com.source.springcineflixbackend.security.jwt.JwtProvider;
 import com.source.springcineflixbackend.security.service.RolService;
 import com.source.springcineflixbackend.security.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,8 +26,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+
+import static java.time.LocalTime.now;
 
 @RestController
 @RequestMapping("/auth")
@@ -45,6 +51,8 @@ public class AuthController {
 
     @Autowired
     JwtProvider jwtProvider;
+
+    private static final String AUTHORIZATION_HEADER = "x-token";
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
@@ -78,4 +86,16 @@ public class AuthController {
         JwtDto jwtDto = new JwtDto(true,jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
+
+    @GetMapping("/renew")
+    public  ResponseEntity<RenewResponse> revalidarToken(@RequestHeader( value = "x-token", required = false ) String token){
+        if(token!=null){
+            return new ResponseEntity<>(new RenewResponse(LocalDateTime.now(),true,token,"renew"), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(new RenewResponse(LocalDateTime.now(),false, token, "No autorizado"), HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+
+
 }
