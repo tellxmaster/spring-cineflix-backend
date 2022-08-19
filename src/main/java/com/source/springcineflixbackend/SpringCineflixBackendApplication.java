@@ -24,11 +24,6 @@ public class SpringCineflixBackendApplication {
         SpringApplication.run(SpringCineflixBackendApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner run(SexoRepository sexoRepo, ActorRepository actorRepo){
-        return args -> {
-        };
-    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {

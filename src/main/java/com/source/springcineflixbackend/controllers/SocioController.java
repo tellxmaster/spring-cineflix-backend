@@ -24,7 +24,7 @@ public class SocioController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("socios",socioService.list(30)))
+                        .data(of("socios",socioService.list(5)))
                         .message("Socios Obtenidos")
                         .status(OK)
                         .statusCode(OK.value())
@@ -37,7 +37,7 @@ public class SocioController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("socios",socioService.create(socio)))
+                        .data(of("socio",socioService.create(socio)))
                         .message("Socio creado")
                         .status(CREATED)
                         .statusCode(CREATED.value())
@@ -50,7 +50,7 @@ public class SocioController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("socios",socioService.get(id)))
+                        .data(of("socio",socioService.get(id)))
                         .message("Socio obtenido")
                         .status(OK)
                         .statusCode(OK.value())
@@ -63,7 +63,7 @@ public class SocioController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("socios",socioService.update(socio)))
+                        .data(of("socio",socioService.update(socio)))
                         .message("Socio Actualizado")
                         .status(OK)
                         .statusCode(OK.value())
@@ -76,7 +76,7 @@ public class SocioController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("socios",socioService.delete(id)))
+                        .data(of("socio",socioService.delete(id)))
                         .message("Socio eliminado")
                         .status(OK)
                         .statusCode(OK.value())
