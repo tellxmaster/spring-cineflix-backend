@@ -24,7 +24,7 @@ public class SocioController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("socios",socioService.list(5)))
+                        .data(of("socios",socioService.list(50)))
                         .message("Socios Obtenidos")
                         .status(OK)
                         .statusCode(OK.value())
@@ -71,6 +71,7 @@ public class SocioController {
         );
     }
 
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Response> deleteSocio(@PathVariable("id") Long id){
         return ResponseEntity.ok(
