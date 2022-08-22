@@ -1,34 +1,39 @@
 package com.source.springcineflixbackend.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "formato")
-@Data
+@Entity(name = "formato")
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 public class Formato {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "for_nombre")
     private String for_nombre;
 
-    @OneToMany(mappedBy = "formato")
-    private List<Pelicula> peliculas;
-
-    @Column(name="updated_at")
+    @Column(name = "updated_at")
+    @UpdateTimestamp
     private Date updated_at;
 
-    @Column(name="created_at")
+    @Column(name = "created_at")
+    @CreationTimestamp
     private Date created_at;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "formato")
+    private List<Pelicula> peliculas;
 }

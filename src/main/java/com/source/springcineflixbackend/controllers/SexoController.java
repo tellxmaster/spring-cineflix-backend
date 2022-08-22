@@ -38,7 +38,7 @@ public class SexoController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("sexos",sexoService.create(sexo)))
+                        .data(of("sexo",sexoService.create(sexo)))
                         .message("Sexo creado")
                         .status(CREATED)
                         .statusCode(CREATED.value())
@@ -51,7 +51,7 @@ public class SexoController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("sexos",sexoService.get(id)))
+                        .data(of("sexo",sexoService.get(id)))
                         .message("Sexo obtenido")
                         .status(OK)
                         .statusCode(OK.value())
@@ -64,7 +64,7 @@ public class SexoController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("sexos",sexoService.update(sexo)))
+                        .data(of("sexo",sexoService.update(sexo)))
                         .message("Sexo Actualizado")
                         .status(OK)
                         .statusCode(OK.value())
@@ -77,7 +77,7 @@ public class SexoController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("sexos",sexoService.delete(id)))
+                        .data(of("sexo",sexoService.delete(id)))
                         .message("Sexo eliminado")
                         .status(OK)
                         .statusCode(OK.value())

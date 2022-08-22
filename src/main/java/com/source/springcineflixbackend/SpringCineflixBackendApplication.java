@@ -25,7 +25,6 @@ public class SpringCineflixBackendApplication {
         SpringApplication.run(SpringCineflixBackendApplication.class, args);
     }
 
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

@@ -39,7 +39,7 @@ public class GeneroController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("generos",generoService.create(genero)))
+                        .data(of("genero",generoService.create(genero)))
                         .message("Genero creado")
                         .status(CREATED)
                         .statusCode(CREATED.value())
@@ -52,7 +52,7 @@ public class GeneroController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("generos",generoService.get(id)))
+                        .data(of("genero",generoService.get(id)))
                         .message("Genero obtenido")
                         .status(OK)
                         .statusCode(OK.value())
@@ -65,7 +65,7 @@ public class GeneroController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("generos",generoService.delete(id)))
+                        .data(of("genero",generoService.delete(id)))
                         .message("Genero eliminado")
                         .status(OK)
                         .statusCode(OK.value())

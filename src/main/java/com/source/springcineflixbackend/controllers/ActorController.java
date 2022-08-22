@@ -46,7 +46,7 @@ public class ActorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("actores",actorService.create(actor)))
+                        .data(of("actor",actorService.create(actor)))
                         .message("Actor creado")
                         .status(CREATED)
                         .statusCode(CREATED.value())
@@ -59,7 +59,7 @@ public class ActorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("actores",actorService.get(id)))
+                        .data(of("actor",actorService.get(id)))
                         .message("Actor obtenido")
                         .status(OK)
                         .statusCode(OK.value())
@@ -74,7 +74,7 @@ public class ActorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("actores",actorService.update(actor)))
+                        .data(of("actor",actorService.update(actor)))
                         .message("Actor Actualizado")
                         .status(OK)
                         .statusCode(OK.value())
@@ -87,7 +87,7 @@ public class ActorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("actores",actorService.delete(id)))
+                        .data(of("actor",actorService.delete(id)))
                         .message("Actor eliminado")
                         .status(OK)
                         .statusCode(OK.value())

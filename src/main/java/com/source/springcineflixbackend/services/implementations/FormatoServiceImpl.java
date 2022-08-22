@@ -24,7 +24,7 @@ public class FormatoServiceImpl implements FormatoService {
 
     @Override
     public Formato create(Formato formato) {
-        log.info("Guardando nuevo Formato: {}",formato.getId());
+        log.info("Guardando nuevo Formato: {}",formato.getFor_nombre());
         return formatoRepo.save(formato);
     }
 

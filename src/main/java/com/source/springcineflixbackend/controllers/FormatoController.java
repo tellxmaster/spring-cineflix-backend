@@ -1,5 +1,6 @@
 package com.source.springcineflixbackend.controllers;
 
+import com.source.springcineflixbackend.models.Director;
 import com.source.springcineflixbackend.models.Formato;
 import com.source.springcineflixbackend.models.Response;
 import com.source.springcineflixbackend.services.implementations.FormatoServiceImpl;
@@ -39,7 +40,7 @@ public class FormatoController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("formatos",formatoService.create(formato)))
+                        .data(of("formato",formatoService.create(formato)))
                         .message("Formato creado")
                         .status(CREATED)
                         .statusCode(CREATED.value())
@@ -52,8 +53,21 @@ public class FormatoController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("formatos",formatoService.get(id)))
+                        .data(of("formato",formatoService.get(id)))
                         .message("Formato obtenido")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Response> updateDirector(@RequestBody Formato formato){
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(of("formato",formatoService.update(formato)))
+                        .message("Formato Actualizado")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -65,7 +79,7 @@ public class FormatoController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("formatos",formatoService.delete(id)))
+                        .data(of("formato",formatoService.delete(id)))
                         .message("Formato eliminado")
                         .status(OK)
                         .statusCode(OK.value())

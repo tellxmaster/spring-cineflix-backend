@@ -2,6 +2,7 @@ package com.source.springcineflixbackend.controllers;
 
 import com.source.springcineflixbackend.models.Director;
 import com.source.springcineflixbackend.models.Response;
+import com.source.springcineflixbackend.models.Sexo;
 import com.source.springcineflixbackend.services.implementations.DirectorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class DirectorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("directores",directorService.create(director)))
+                        .data(of("director",directorService.create(director)))
                         .message("Director creado")
                         .status(CREATED)
                         .statusCode(CREATED.value())
@@ -52,8 +53,21 @@ public class DirectorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("directores",directorService.get(id)))
+                        .data(of("director",directorService.get(id)))
                         .message("Director obtenido")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Response> updateDirector(@RequestBody Director director){
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(of("director",directorService.update(director)))
+                        .message("Director Actualizado")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -65,7 +79,7 @@ public class DirectorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("directores",directorService.delete(id)))
+                        .data(of("director",directorService.delete(id)))
                         .message("Director eliminado")
                         .status(OK)
                         .statusCode(OK.value())

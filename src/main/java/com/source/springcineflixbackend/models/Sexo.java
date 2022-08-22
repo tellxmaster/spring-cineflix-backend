@@ -1,7 +1,11 @@
 package com.source.springcineflixbackend.models;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
@@ -9,65 +13,31 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "sexo")
+@Entity(name = "sexo")
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 public class Sexo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "sex_nombre")
     private String sex_nombre;
 
     @Column(name = "updated_at")
+    @UpdateTimestamp
     private Date updated_at;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private Date created_at;
 
-    @OneToMany(mappedBy = "sexo")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sexo")
     private List<Actor> actors;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSex_nombre() {
-        return sex_nombre;
-    }
-
-    public void setSex_nombre(String sex_nombre) {
-        this.sex_nombre = sex_nombre;
-    }
-
-    public Date getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
-    }
-
-    public Date getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
-    }
-
-    public List<Actor> getActors() {
-        return actors;
-    }
-
-    public void setActors(List<Actor> actors) {
-        this.actors = actors;
-    }
 
 }

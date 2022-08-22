@@ -1,33 +1,26 @@
 package com.source.springcineflixbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.transaction.Transactional;
 import java.util.Date;
 
 @Entity(name = "alquiler")
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 public class Alquiler {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "soc_id", referencedColumnName = "id", foreignKey=@ForeignKey(name = "FN_PELICULA_ALQUILER"))
-    private Socio socio;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "pel_id", referencedColumnName = "id", foreignKey=@ForeignKey(name = "FN_SOCIO_ALQUILER"))
-    private Pelicula peliculaAlq;
 
     @Column(name = "alq_fecha_desde")
     private Date alq_fecha_desde;
@@ -41,12 +34,25 @@ public class Alquiler {
     @Column(name = "alq_fecha_entrega")
     private Date alq_fecha_entrega;
 
-    @Column(name="updated_at")
+    @Column(name = "updated_at")
+    @UpdateTimestamp
     private Date updated_at;
 
-    @Column(name="created_at")
+    @Column(name = "created_at")
+    @CreationTimestamp
     private Date created_at;
 
+    //@JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "soc_id", referencedColumnName = "id", foreignKey=@ForeignKey(name = "FN_PELICULA_ALQUILER"))
+    @ToString.Exclude
+    private Socio socio;
+
+    //@JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "pel_id", referencedColumnName = "id", foreignKey=@ForeignKey(name = "FN_SOCIO_ALQUILER"))
+    @ToString.Exclude
+    private Pelicula peliculaAlq;
     public void asignarSocio(Socio socio) {
         this.socio = socio;
     }
