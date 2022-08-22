@@ -68,10 +68,10 @@ public class AlquilerController {
         );
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Response> updateAlquiler(@RequestBody Alquiler alquiler){
-        Socio socio = socioService.get(alquiler.getSocio().getId());
-        Pelicula pelicula = peliculaService.get(alquiler.getPeliculaAlq().getId());
+    @PutMapping("/update/socio/{socId}/pelicula/{pelId}")
+    public ResponseEntity<Response> updateAlquiler(@RequestBody Alquiler alquiler, @PathVariable Long socId, @PathVariable Long pelId){
+        Socio socio = socioService.get(socId);
+        Pelicula pelicula = peliculaService.get(pelId);
         alquiler.asignarSocio(socio);
         alquiler.asignarPelicula(pelicula);
         return ResponseEntity.ok(

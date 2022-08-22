@@ -78,12 +78,14 @@ public class PeliculaController {
         );
     }
     
-    @PutMapping("/update")
-    public ResponseEntity<Response> updatePelicula(@RequestBody Pelicula pelicula){
-        Pelicula pel = peliculaService.get(pelicula.getId());
-        pelicula.asignarGenero(pel.getGenero());
-        pelicula.asignarDirector(pel.getDirector());
-        pelicula.asignarFormato(pel.getFormato());
+    @PutMapping("/update/genero/{genId}/director/{dirId}/formato/{forId}")
+    public ResponseEntity<Response> updatePelicula(@RequestBody Pelicula pelicula, @PathVariable Long genId, @PathVariable Long dirId, @PathVariable Long forId){
+        Genero genero = generoService.get(genId);
+        Director director = directorService.get(dirId);
+        Formato formato = formatoService.get(forId);
+        pelicula.asignarGenero(genero);
+        pelicula.asignarDirector(director);
+        pelicula.asignarFormato(formato);
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())

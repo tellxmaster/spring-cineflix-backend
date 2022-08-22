@@ -67,10 +67,10 @@ public class ActorController {
         );
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Response> updateActor(@RequestBody Actor actor){
-        Actor act = actorService.get(actor.getId());
-        actor.asignarSexo(act.getSexo());
+    @PutMapping("/update/sexo/{sexId}")
+    public ResponseEntity<Response> updateActor(@RequestBody Actor actor, @PathVariable Long sexId){
+        Sexo sexo = sexoService.get(sexId);
+        actor.asignarSexo(sexo);
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())

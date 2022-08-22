@@ -68,11 +68,11 @@ public class ActorPeliculaController {
         );
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Response> updateActorPelicula(@RequestBody ActorPelicula actor_pelicula){
-        Actor actor = actorService.get(actor_pelicula.getId());
-        Pelicula pelicula = peliculaService.get(actor_pelicula.getId());
+    @PutMapping("/update/actor/{actId}/pelicula/{pelId}")
+    public ResponseEntity<Response> updateActorPelicula(@RequestBody ActorPelicula actor_pelicula, @PathVariable Long actId, @PathVariable Long pelId){
+        Actor actor = actorService.get(actId);
         actor_pelicula.asignarActor(actor);
+        Pelicula pelicula = peliculaService.get(pelId);
         actor_pelicula.asignarPelicula(pelicula);
         return ResponseEntity.ok(
                 Response.builder()
