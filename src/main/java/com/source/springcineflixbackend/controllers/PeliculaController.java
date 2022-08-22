@@ -57,7 +57,7 @@ public class PeliculaController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("peliculas", peliculaService.create(pelicula)))
+                        .data(of("pelicula", peliculaService.create(pelicula)))
                         .message("Pelicula creada")
                         .status(CREATED)
                         .statusCode(CREATED.value())

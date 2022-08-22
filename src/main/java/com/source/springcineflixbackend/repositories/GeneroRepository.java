@@ -4,4 +4,5 @@ import com.source.springcineflixbackend.models.Genero;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GeneroRepository extends JpaRepository<Genero,Long> {
+    int countAllById(long id);
 }

@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity(name = "alquiler")
@@ -34,13 +35,13 @@ public class Alquiler {
     @Column(name = "alq_fecha_entrega")
     private Date alq_fecha_entrega;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated")
     @UpdateTimestamp
-    private Date updated_at;
+    private LocalDateTime updated;
 
-    @Column(name = "created_at")
+    @Column(name = "created")
     @CreationTimestamp
-    private Date created_at;
+    private LocalDateTime created;
 
     //@JsonIgnore
     @ManyToOne

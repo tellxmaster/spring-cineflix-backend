@@ -41,13 +41,13 @@ public class Socio {
     @Column(name = "soc_correo")
     private String correo;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated")
     @UpdateTimestamp
-    private Date updated_at;
+    private LocalDateTime updated;
 
-    @Column(name = "created_at")
+    @Column(name = "created")
     @CreationTimestamp
-    private Date created_at;
+    private LocalDateTime created;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "socio")

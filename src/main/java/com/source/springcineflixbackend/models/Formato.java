@@ -27,13 +27,13 @@ public class Formato {
     @Column(name = "for_nombre")
     private String for_nombre;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated")
     @UpdateTimestamp
-    private Date updated_at;
+    private Date updated;
 
-    @Column(name = "created_at")
+    @Column(name = "created")
     @CreationTimestamp
-    private Date created_at;
+    private Date created;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formato")

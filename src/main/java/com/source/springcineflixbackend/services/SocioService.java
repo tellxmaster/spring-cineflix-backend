@@ -12,4 +12,5 @@ public interface SocioService {
     Socio get(Long id);
     Socio update(Socio socio);
     Boolean delete(Long id);
+
 }

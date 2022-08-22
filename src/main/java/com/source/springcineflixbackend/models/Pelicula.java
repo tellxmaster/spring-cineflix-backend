@@ -34,13 +34,13 @@ public class Pelicula {
     @Column(name = "pel_fecha_est")
     private Date pel_fecha_est;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated")
     @UpdateTimestamp
-    private Date updated_at;
+    private Date updated;
 
-    @Column(name = "created_at")
+    @Column(name = "created")
     @CreationTimestamp
-    private Date created_at;
+    private Date created;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "peliculaAct")

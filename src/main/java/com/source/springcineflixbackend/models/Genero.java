@@ -27,11 +27,11 @@ public class Genero {
     @Column(name = "gen_nombre")
     private String gen_nombre;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated")
     @UpdateTimestamp
     private Date updated_at;
 
-    @Column(name = "created_at")
+    @Column(name = "created")
     @CreationTimestamp
     private Date created_at;
 

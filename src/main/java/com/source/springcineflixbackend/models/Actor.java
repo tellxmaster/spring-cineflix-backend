@@ -26,13 +26,13 @@ public class Actor {
     @Column(name = "act_nombre")
     private String act_nombre;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated")
     @UpdateTimestamp
-    private Date updated_at;
+    private Date updated;
 
-    @Column(name = "created_at")
+    @Column(name = "created")
     @CreationTimestamp
-    private Date created_at;
+    private Date created;
 
     @ManyToOne
     @JoinColumn(name = "sex_id",foreignKey=@ForeignKey(name = "FN_ACTOR_SEXO_PELICULA"))
