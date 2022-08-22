@@ -70,7 +70,7 @@ public class PeliculaController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("peliculas",peliculaService.get(id)))
+                        .data(of("pelicula",peliculaService.get(id)))
                         .message("Pelicula obtenida")
                         .status(OK)
                         .statusCode(OK.value())
@@ -87,7 +87,7 @@ public class PeliculaController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("peliculas",peliculaService.update(pelicula)))
+                        .data(of("pelicula",peliculaService.update(pelicula)))
                         .message("Pelicula Actualizada")
                         .status(OK)
                         .statusCode(OK.value())
@@ -101,7 +101,7 @@ public class PeliculaController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("peliculas",peliculaService.delete(id)))
+                        .data(of("pelicula",peliculaService.delete(id)))
                         .message("Pelicula eliminada")
                         .status(OK)
                         .statusCode(OK.value())

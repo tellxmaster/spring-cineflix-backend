@@ -42,9 +42,11 @@ public class Pelicula {
     @CreationTimestamp
     private Date created_at;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "peliculaAct")
     private List<ActorPelicula> actor_peliculas;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "peliculaAlq")
     private List<Alquiler> alquilers;
 

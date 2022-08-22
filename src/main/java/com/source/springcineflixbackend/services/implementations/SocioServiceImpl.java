@@ -10,7 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 
 import static java.lang.Boolean.TRUE;
 
@@ -52,5 +54,6 @@ public class SocioServiceImpl implements SocioService {
         socioRepo.deleteById(id);
         return TRUE;
     }
+
 
 }

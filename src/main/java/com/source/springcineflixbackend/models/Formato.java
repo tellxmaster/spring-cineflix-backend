@@ -1,5 +1,6 @@
 package com.source.springcineflixbackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -34,6 +35,7 @@ public class Formato {
     @CreationTimestamp
     private Date created_at;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formato")
     private List<Pelicula> peliculas;
 }

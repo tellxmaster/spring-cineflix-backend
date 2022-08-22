@@ -47,7 +47,7 @@ public class AlquilerController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("alquileres",alquilerService.create(alquiler)))
+                        .data(of("alquiler",alquilerService.create(alquiler)))
                         .message("Alquiler creado")
                         .status(CREATED)
                         .statusCode(CREATED.value())
@@ -60,7 +60,7 @@ public class AlquilerController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("alquileres",alquilerService.get(id)))
+                        .data(of("alquiler",alquilerService.get(id)))
                         .message("Alquiler obtenido")
                         .status(OK)
                         .statusCode(OK.value())
@@ -77,7 +77,7 @@ public class AlquilerController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("alquileres",alquilerService.update(alquiler)))
+                        .data(of("alquiler",alquilerService.update(alquiler)))
                         .message("Alquiler Actualizado")
                         .status(OK)
                         .statusCode(OK.value())
@@ -90,7 +90,7 @@ public class AlquilerController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("alquileres",alquilerService.delete(id)))
+                        .data(of("alquiler",alquilerService.delete(id)))
                         .message("Alquiler eliminado")
                         .status(OK)
                         .statusCode(OK.value())
